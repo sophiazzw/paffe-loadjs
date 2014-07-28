@@ -15,13 +15,17 @@ var mask = new Mask({
 
 ##API
 * open()
+
   打开mask
 
 * close()
+
   关闭mask
 
 * destory()
+
   销毁对象
 
 * reset()
+
   重新设置mask的位置和大小
