@@ -3,6 +3,19 @@ define('alert', function(require, exports, module){
 var Dialog = require('dialog');
 
 return {
+	alert: function(content){
+		return new Dialog({
+			title: '提示',
+			width: 400,
+			content: '<p class="ui-alert"><span>' + content + '</span></p>',
+			autoOpen: true,
+			buttons: {
+				'确定': function(){
+					this.destory();
+				}
+			}
+		});
+	},
 	/**
 	 * 同浏览器默认的confirm 
 	 * content：显示内容
