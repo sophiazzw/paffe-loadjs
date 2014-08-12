@@ -167,6 +167,18 @@ Module.load = function(path, notice){
         if(!Module.loadingSource[_path]){
                 Module.loadingSource[_path] = 1;
 
+		function onload(){
+                        if(isLoaded) return;
+
+                        Module.loadingSource[_path] = 1;
+
+                        if(!source.readyState || source.readyState == 'loaded' || source.readyState == 'complete'){
+                                isLoaded = 1;
+                                source.onload = source.onerror = source.onreadystatechange = null;
+                                Module.loaded(_path);
+                        }
+                }
+
                 var  
                 isCss = /\.css$/.test(path),
                 isLoaded = 0,
@@ -196,18 +208,6 @@ Module.load = function(path, notice){
 
                                 setTimeout(arguments.callee);
                         });
-                }
-
-                function onload(){
-                        if(isLoaded) return;
-
-                        Module.loadingSource[_path] = 1;
-
-                        if(!source.readyState || source.readyState == 'loaded' || source.readyState == 'complete'){
-                                isLoaded = 1;
-                                source.onload = source.onerror = source.onreadystatechange = null;
-                                Module.loaded(_path);
-                        }
                 }
         }else if(Module.loadedSource[_path]){
                 Module.loaded(_path);
