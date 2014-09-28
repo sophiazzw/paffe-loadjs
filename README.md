@@ -75,5 +75,3 @@ require.config.deps = {
     'mod/mod1/mod1.js': ['jquery']  
 };
 ```
-
-
